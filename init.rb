@@ -1,1 +1,1 @@
-require 'flagged_model'
+require 'tm-flagged'
