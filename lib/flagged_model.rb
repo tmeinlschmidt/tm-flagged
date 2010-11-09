@@ -7,9 +7,9 @@ module FlaggedModel
   
   TRUE_VALUES = [true, 1, '1', 't', 'T', 'true', 'TRUE']
   
-  def self.included(base)
-    base.extend ClassMethods
-  end
+ # def self.included(base)
+ #   base.extend ClassMethods
+ # end
 
   module ClassMethods
 
@@ -150,3 +150,8 @@ module FlaggedModel
     self[self.class.flag_column] = value
   end
 end
+
+Class.class_eval do
+  include FlaggedModel::ClassMethods
+end
+
