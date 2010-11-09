@@ -2,6 +2,10 @@
 
 Original idea by github.com/xing/flag_shin_tzu
 
+warning:
+
+  NOT FOR PRODUCTION USE NOW
+
 ==Installation
 
   gem install tm-flagged
