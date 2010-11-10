@@ -37,7 +37,7 @@ module FlaggedModel
         raise ArgumentError, "has_flags: invalid key '#{name}'" unless valid_key?(key)
         raise ArgumentError, "has_flags: invalid name '#{name}'" unless valid_name?(name)
         raise ArgumentError, "has_flags: name exists '#{name}'" if method_defined?(name)
-        flag_mapping[flag_column][name] = 1 << (key-1)
+        flag_mapping[flag_column][name] = to_bits(key)
         
         class_eval <<-EVAL
           def #{name}
@@ -63,6 +63,9 @@ module FlaggedModel
 
     private
   
+    def to_bits(key)
+      (1 << (key-1))
+    end
 
     def check_column_presence
       # ActiveRecord
@@ -78,7 +81,7 @@ module FlaggedModel
     # is key valid?
     # suppose 64bit bigint ("select ~0;")
     def valid_key?(key)
-      (key > 0 && key<=64 && key == key.to_i && !flag_mapping[flag_column].values.include?(key))
+      (key > 0 && key<=64 && key == key.to_i && !flag_mapping[flag_column].values.include?(to_bits(key)))
     end
 
     # is name valid?
