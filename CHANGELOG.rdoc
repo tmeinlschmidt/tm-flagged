@@ -1,5 +1,9 @@
 == master
 
+== 0.0.1.alpha / 2010-11-10
+
+* fixed key checking
+
 == 0.0.1 / 2010-11-09
 
 * Initial version
